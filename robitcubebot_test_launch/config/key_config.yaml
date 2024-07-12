@@ -1,0 +1,10 @@
+teleop_twist_keyboard:
+  ros__parameters:
+    scale_linear: 0.5      # Linear scale factor for velocity
+    scale_angular: 1.0     # Angular scale factor for velocity
+    key_bindings:
+      linear_forward: "w"  # Move forward
+      linear_backward: "x" # Move backward
+      angular_left: "a"    # Turn left
+      angular_right: "d"   # Turn right
+      stop: "s"            # Stop

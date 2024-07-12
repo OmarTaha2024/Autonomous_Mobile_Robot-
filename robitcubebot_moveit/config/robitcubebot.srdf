@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="robitcubebot">
+
+    <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="base_footprint"/>
+
+    <group name="gripper">
+        <joint name="lift_joint"/>
+    </group>
+    <group_state name="home" group="gripper">
+        <joint name="lift_joint" value="0"/>
+    </group_state>
+    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
+    <!--PASSIVE JOINT: Purpose: this element is used to mark joints that are not actuated-->
+    <!-- <passive_joint name="joint_5"/> -->
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="base_link" link2="upper_link" reason="Adjacent"/>
+    <disable_collisions link1="upper_link" link2="link_platform_mid" reason="Never"/>
+    <disable_collisions link1="link_platform_mid" link2="lift_link" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="front_wheel_right_link" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="front_wheel_right_joint" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="back_wheel_right_link" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="back_wheel_left_link" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="lift_link" reason="Never"/>
+    <disable_collisions link1="upper_link" link2="lift_link" reason="Never"/>
+    <disable_collisions link1="front_wheel_right_link" link2="lift_link" reason="Never"/>
+    <disable_collisions link1="front_wheel_right_joint" link2="lift_link" reason="Never"/>
+    <disable_collisions link1="back_wheel_right_link" link2="lift_link" reason="Never"/>
+    <disable_collisions link1="back_wheel_left_link" link2="lift_link" reason="Never"/>
+    <disable_collisions link1="front_wheel_right_link" link2="upper_link" reason="Never"/>
+    <disable_collisions link1="front_wheel_right_joint" link2="upper_link" reason="Never"/>
+    <disable_collisions link1="back_wheel_right_link" link2="upper_link" reason="Never"/>
+    <disable_collisions link1="back_wheel_left_link" link2="upper_link" reason="Never"/>
+    <disable_collisions link1="laser_frame" link2="upper_link" reason="Adjacent"/>
+    <disable_collisions link1="laser_frame" link2="lift_link" reason="Never"/>
+
+</robot>

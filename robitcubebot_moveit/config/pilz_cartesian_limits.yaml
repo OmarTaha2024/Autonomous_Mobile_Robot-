@@ -1,0 +1,5 @@
+
+vertical_limits:
+  max_vertical_vel: 0.5   # Maximum vertical velocity (m/s)
+  max_vertical_acc: 1.0   # Maximum vertical acceleration (m/s^2)
+  max_vertical_dec: -2.0  # Maximum vertical deceleration (m/s^2)

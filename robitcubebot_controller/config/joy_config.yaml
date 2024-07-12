@@ -1,0 +1,21 @@
+twist_teleop_keyboard:
+  ros__parameters:
+    enable_turbo_button: false  # No need for turbo button on a keyboard
+    scale_linear: 0.5  # Adjust the linear scale as needed
+    scale_angular: 0.5  # Adjust the angular scale as needed
+    linear_velocity:
+      x: 0.0  # Default to 0 unless specified by key
+      y: 0.0  # No sideways movement in this configuration
+      z: 0.0  # No vertical movement in this configuration
+    angular_velocity:
+      x: 0.0  # No pitch movement in this configuration
+      y: 0.0  # No sideways movement in this configuration
+      z: 0.0  # Default to 0 unless specified by key
+    bindings:
+      # Define key bindings for controlling movement
+      linear:
+        - {key: w, operation: "up"}  # Move forward with 'w' key
+        - {key: s, operation: "down"}  # Move backward with 's' key
+      angular:
+        - {key: a, operation: "left"}  # Turn left with 'a' key
+        - {key: d, operation: "right"}  # Turn right with 'd' key

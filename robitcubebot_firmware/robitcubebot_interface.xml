@@ -1,0 +1,10 @@
+<library path="robitcubebot_firmware">
+    <class name="robitcubebot_firmware/robitcubebotInterface"
+      type="robitcubebot_firmware::robitcubebotInterface"
+      base_class_type="hardware_interface::SystemInterface"
+    >
+      <description>
+        robitcubebot Hardware Interface
+      </description>
+    </class>
+  </library>
