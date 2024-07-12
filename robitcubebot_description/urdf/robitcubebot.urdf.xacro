@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<robot name="robitcubebot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Load Simulated or Real Hardware Interfaces -->
+  <xacro:arg name="is_sim" default="true"/>
+
+  <!-- Include Gazebo Parameters -->
+  <xacro:include filename="$(find robitcubebot_description)/urdf/robitcubebot_gazebo.xacro" />
+
+  <!-- Include ros2_control Plugins -->
+  <xacro:include filename="common_properties.xacro" />
+  <xacro:include filename="$(find robitcubebot_description)/urdf/robitcubebot_ros2_control.xacro" />
+  <xacro:include filename="robitcubebot_base.xacro" />
+  <xacro:include filename="lidar.xacro"/>
+  <xacro:include filename="lift.xacro" />
+
+  <xacro:include filename="imu.xacro" />
+  
+
+</robot>

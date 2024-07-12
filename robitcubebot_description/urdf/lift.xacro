@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:property name="screw_diameter" value="0.008" />
+  <xacro:property name="screw_length" value="0.10" />
+  <xacro:property name="plate_radius" value="0.045" />
+  <xacro:property name="screw_length" value="0.10" />
+  <link name="link_platform_mid">
+    <origin xyz="0 0 0.0" rpy="0 0 0"/>
+
+    <visual>
+      <geometry>
+        <mesh filename="package://robitcubebot_description/meshes/Lead_screw.STL" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="black">
+          <color rgba="0.1 0.1 0.1 1" />
+      </material>
+
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.02 0.02 0.10" />
+      </geometry>
+    </collision>
+
+    <inertial>
+      <mass value="1"/>
+      <inertia
+              ixx="1.0" ixy="0.0" ixz="0.0"
+              iyy="1.0" iyz="0.0"
+              izz="1.0"/>
+    </inertial>
+
+  </link>
+  <joint name="platform_joint" type="fixed">
+    <parent link="upper_link" />
+    <child link="link_platform_mid" />
+    <origin xyz="0.0 0 0.02" rpy="0. 0. 0."/>
+  </joint>
+
+
+  <link name="lift_link">
+    
+
+    <visual>
+      <origin xyz="-${plate_radius/1.1} -${plate_radius/1.1}  0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robitcubebot_description/meshes/upperstand.STL" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+         <mesh filename="package://robitcubebot_description/meshes/upperstand.STL" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1"/>
+      <inertia
+              ixx="1.0" ixy="0.0" ixz="0.0"
+              iyy="1.0" iyz="0.0"
+              izz="1.0"/>
+    </inertial>
+  </link>
+  
+  <joint name="lift_joint" type="prismatic">
+    <origin xyz="0 0 0.03" rpy="0 0 0"/>
+    <parent link="link_platform_mid" />
+    <child link="lift_link" />
+    <axis xyz="0 0 1" rpy="0 0 0"/>
+    <limit effort="100.0" lower="-0.05" upper="0.035" velocity="1.0"/>
+    <dynamics damping="0.1" friction="0.1"/>
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+  </joint>
+
+</robot>

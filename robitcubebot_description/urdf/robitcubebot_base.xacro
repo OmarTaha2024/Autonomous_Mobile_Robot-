@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<robot name="robitcubebot" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="common_properties.xacro" />
+
+  <link name="base_footprint"/>
+
+  <!-- Define robot properties -->
+  <xacro:property name="base_length" value="0.317" />
+  <xacro:property name="base_width" value="0.212" />
+  <xacro:property name="base_height" value="0.0446" />
+  <xacro:property name="wheel_radius" value="0.0325" />
+  <xacro:property name="wheel_length" value="0.025" />
+  
+  <link name="base_link">
+    <xacro:box_inertia m="0.6" l="${2*base_length}" w="${2*base_width}" h="${2*base_height}"
+                           xyz="0 0 ${base_height / 2.0}" rpy="0 0 0" />
+    <visual>
+      <origin xyz="-${base_length / 2.0} -${base_width / 2.0} 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robitcubebot_description/meshes/base_link.STL" scale="0.001 0.001 0.001" />
+        
+      </geometry>
+      <material name="black">
+          <color rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.1" rpy="0 0 0" />
+      
+      <geometry>
+        <box size="${base_length} ${base_width} ${base_height}" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <!-- Define joints -->
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link" />
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Wheels -->
+
+  <link name="front_wheel_right_link">
+    <inertial>
+      <origin xyz="0 -0.014 0" rpy="0 0 0" />
+      <mass value="0.0530086090966721" />
+      <inertia ixx="1.88176298336665E-05" ixy="-4.8444933029987E-10" ixz="1.88163708851143E-08"
+               iyy="3.11510738647764E-05" iyz="-6.93560663069607E-11"
+               izz="1.8801969558182E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.57 0 0" />
+      <geometry>
+        <mesh filename="package://robitcubebot_description/meshes/wheel_right_link.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 -0.015 0" rpy="1.57 0 0" />
+      <geometry>
+        <sphere radius="0.033"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="front_wheel_right_joint" type="continuous">
+    <origin xyz="-${base_width / 1.8} -${base_width / 2.1} ${wheel_radius}" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="front_wheel_right_link" />
+    <axis xyz="0 -1 0" />
+  </joint>
+  <link
+    name="front_wheel_left_link">
+    <inertial>
+      <origin xyz="0 0.014 0" rpy="0 0 0" />
+      <mass value="0.0530086043217644" />
+      <inertia ixx="1.8792911368909E-05"  ixy="3.31256392204584E-10" ixz="-1.14082001662767E-08"
+               iyy="3.11510738759073E-05" iyz="-3.60499245082192E-10"
+               izz="1.88266886146847E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="-1.57 0 0" />
+      <geometry>
+        <mesh filename="package://robitcubebot_description/meshes/wheel_left_link.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0.015 0" rpy="-1.57 0 0" />
+      <geometry>
+        <sphere radius="0.033"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="front_wheel_left_joint" type="continuous">
+    <origin xyz="-${base_width / 1.8} ${base_width / 2.1} ${wheel_radius}" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="front_wheel_left_link" />
+    <axis xyz="0 -1 0" />
+  </joint>
+  <link name="back_wheel_right_link">
+    <inertial>
+      <origin xyz="0 -0.014 0" rpy="0 0 0" />
+      <mass value="0.0530086090966721" />
+      <inertia ixx="1.88176298336665E-05" ixy="-4.8444933029987E-10" ixz="1.88163708851143E-08"
+               iyy="3.11510738647764E-05" iyz="-6.93560663069607E-11"
+               izz="1.8801969558182E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.57 0 0" />
+      <geometry>
+        <mesh filename="package://robitcubebot_description/meshes/wheel_right_link.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 -0.015 0" rpy="1.57 0 0" />
+      <geometry>
+        <sphere radius="0.033"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="back_wheel_right_joint" type="continuous">
+    <origin xyz="${base_width / 1.8} -${base_width / 2.1} ${wheel_radius}" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="back_wheel_right_link" />
+    <axis xyz="0 -1 0" />
+
+  </joint>
+  <link
+    name="back_wheel_left_link">
+    <inertial>
+      <origin xyz="0 0.014 0" rpy="0 0 0" />
+      <mass value="0.0530086043217644" />
+      <inertia ixx="1.8792911368909E-05"  ixy="3.31256392204584E-10" ixz="-1.14082001662767E-08"
+               iyy="3.11510738759073E-05" iyz="-3.60499245082192E-10"
+               izz="1.88266886146847E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="-1.57 0 0" />
+      <geometry>
+        <mesh filename="package://robitcubebot_description/meshes/wheel_left_link.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0.015 0" rpy="-1.57 0 0" />
+      <geometry>
+        <sphere radius="0.033"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="back_wheel_left_joint" type="continuous">
+    <origin xyz="${base_width / 1.8} ${base_width / 2.1} ${wheel_radius}" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="back_wheel_left_link" />
+    <axis xyz="0 -1 0" />
+
+  </joint>
+
+
+  <link name="upper_link">
+    <xacro:box_inertia m="0.6" l="${2*base_length}" w="${2*base_width}" h="${2*base_height}"
+                           xyz="0 0 ${base_height / 2.0}" rpy="0 0 0" />
+    <visual>
+      <origin xyz="-${base_length / 1.75} -0.165 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robitcubebot_description/meshes/upper_link.STL" scale="0.001 0.001 0.001" />
+        
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 ${base_height}" rpy="0 0 0" />
+      <geometry>
+        <box size="${base_length} ${base_width} ${base_height}" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="upper_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="upper_link" />
+    <origin xyz="0 0 ${base_height}" rpy="0 0 0"/>
+  </joint>
+
+
+</robot>

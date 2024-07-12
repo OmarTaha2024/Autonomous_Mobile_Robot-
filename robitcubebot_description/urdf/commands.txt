@@ -1,0 +1,2 @@
+ros2 launch urdf_tutorial display.launch.py model:=/home/omar/urdf/my_robot.urdf.xacro
+ros2 launch urdf_tutorial display.launch.py model:=/home/omar/grad_proj_ws/src/Amazon-Robot/amazon_robot_description/urdf/amazon_warehouse_robot.urdf.xacro 
